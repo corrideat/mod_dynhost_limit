@@ -1,0 +1,76 @@
+##
+## OIDs are owned by Ricardo I. Vieitez Parra
+##
+## 1.3.6.1.4.1.34965.1.x   - mod_dynhost_limit
+## 1.3.6.1.4.1.34965.1.1.x - attributetypes
+## 1.3.6.1.4.1.34965.1.2.x - objectclasses
+##
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.2 NAME 'vhostServerName'
+	SUP name
+	DESC 'mod_dynhost_limit: Main domain to use, Apache ServerName. Set without www prefix'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+	
+attributetype ( 1.3.6.1.4.1.34965.1.1.3 NAME 'vhostServerAlias'
+	SUP name
+	DESC 'mod_dynhost_limit: Additional "plus" domains to use'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+	
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.4 NAME 'userHome'
+	SUP name
+	DESC 'mod_dynhost_limit: Home directory for this particular user'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.5 NAME 'apacheServerAdmin'
+	SUP name
+	DESC 'mod_dynhost_limit: Apache ServerAdmin'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.6 NAME 'vhostUID'
+	SUP name
+	DESC 'mod_dynhost_limit: uid to store files, execute scripts'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.7 NAME 'vhostGID'
+	SUP name
+	DESC 'mod_dynhost_limit: gid to store files, execute scripts'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.8 NAME 'apacheTransfLimit'
+	SUP name
+	DESC 'mod_dynhost_limit: Transfer quota'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	ORDERING caseIgnoreOrderingMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+	SINGLE-VALUE )
+
+attributetype ( 1.3.6.1.4.1.34965.1.1.9 NAME 'vhostSubDomain'
+	SUP name
+	DESC 'mod_dynhost_limit: Enabled subdomains'
+	EQUALITY caseIgnoreMatch
+	SUBSTR caseIgnoreSubstringsMatch
+	SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+
+objectclass ( 1.3.6.1.4.1.34965.1.2.1 NAME 'vhostConfig'
+	SUP 'top'
+	MUST ( vhostServerName $ userHome $ vhostUID $ vhostGID )
+	MAY ( vhostServerAlias $ apacheServerAdmin $ apacheTransfLimit $ vhostSubDomain ) )
