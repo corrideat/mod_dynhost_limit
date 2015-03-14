@@ -1,4 +1,5 @@
 /* ============================================================
+ * Copyright (c) 2010, Ricardo Iván Vieitez Parra
  * Copyright (c) 2003-2004, Ondrej Sury
  * All rights reserved.
  *
